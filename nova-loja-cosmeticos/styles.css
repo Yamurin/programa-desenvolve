@@ -1,0 +1,15 @@
+@import url(./styles/header.css);
+@import url(./styles/banner.css);
+@import url(./styles/categories.css);
+@import url(./styles/produtos-destaques.css);
+
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+:root {
+    --preto: #000;
+    --branco: #fff;
+
+    --font-paragraph: "Work Sans";
+    --font-category: 
+}
