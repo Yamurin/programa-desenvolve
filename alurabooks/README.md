@@ -2,7 +2,7 @@
 Site estático responsivo simples desenvolvido como a primeira atividade prática no Programa Boticário Desenvolve 2024.
 O design do projeto está disponível no Figma e foi desenvolvido pela Alura. 
 
- ![Screenshot do site ALuraBooks](/img/thumb.jpg)
+ ![Screenshot do site AluraBooks](./img/thumb.jpg)
 
 ## 💡 Sobre o Projeto
 O projeto foi um exercício sugerido no curso de formação front-end "A partir do zero: Html, Css para projetos web", oferecido na trilha de formação do Programa Boticário DEsenvolve 2024. O curso teve conteúdo com total de 51 horas. 
