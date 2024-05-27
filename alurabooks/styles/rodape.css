@@ -1,0 +1,23 @@
+hr {
+    margin: 0;
+  }
+  
+  .rodape {
+    display: flex;
+    justify-content: space-between;
+    
+    background-color: var(--cinza-claro);
+    padding: 1.2em 2em;
+    
+    font-family: var(--fonte-principal), sans-serif;
+  }
+  
+  .rodape__titulo {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  .rodape_-texto {
+    font-size: 14px;
+    font-weight: 300;
+  }

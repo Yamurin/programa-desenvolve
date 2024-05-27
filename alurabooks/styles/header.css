@@ -1,0 +1,134 @@
+
+
+.cabeçalho__menu-hamburguer {
+    width: 24px;
+    height: 24px;
+    background-image: url("../img/Menu.svg");
+    display: inline-block;
+}
+
+.cabeçalho {
+    background-color: var(--branco);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.container {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.container__imagem {
+    padding: 1em;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.lista-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    width: 60vw;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+.lista-menu__item:hover {
+    background-color: var(--cinza-claro) !important;
+  }
+
+.container__titulo {
+    display: none;
+}
+
+.container__botao {
+    display: none;
+}
+.container__botao:checked~.lista-menu {
+    display: block;
+}
+
+.faixa-menu {
+    display: none;
+}
+
+.lista-menu__item, .lista-menu__titulo {
+    font-family: var(--fonte-principal), sans-serif;
+    padding: 1em;
+    background-color: var(--branco);
+}
+
+.lista-menu__titulo {
+    color: var(--cor-destaque);
+    font-weight: 700;
+}
+
+.lista-menu__link {
+    text-transform: uppercase;
+    text-decoration: none;
+    
+    color: #002F52;
+}
+
+@media screen and (min-width: 1024px)
+{
+    .cabeçalho__menu-hamburguer {
+        display: none;
+    }
+
+    .container__titulo,
+    .container__titulo--negrito {
+        display: inline;
+        font-family: var(--fonte-secundario), sans-serif;
+        font-size: 30px;
+    }
+
+    .container__titulo {
+        font-weight: 400;
+    }
+
+    .container__titulo--negrito {
+        font-weight: 700;
+    }
+
+    .container__imagem-transparente {
+        display: none;
+    }
+    .faixa-menu {
+        display: flex;
+        gap: 1em;
+        font-family: var(--fonte-principal), sans-serif;
+        margin-left: 2em;
+    }
+    
+    .faixa-menu__item,
+    .faixa-menu__item__link {
+        padding: 1em 0.5em;
+        color: var(--preto);
+    }
+
+    .faixa-menu__item {
+        text-transform: uppercase;
+    }
+    
+    .faixa-menu__item__link {
+        text-decoration: none;
+    }
+
+    .faixa-menu__item:hover {
+        background-image: var(--azul-degrade);
+        color: var(--branco);
+    }
+
+    .faixa-menu__item__link:hover {
+        color: var(--branco);
+    }
+
+    .lista-menu {
+        width: auto;
+    }
+    
+}
