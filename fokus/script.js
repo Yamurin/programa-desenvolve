@@ -1,5 +1,4 @@
-
-const html    = document.querySelector('html')
+const html = document.querySelector('html')
 const focoBt  = document.querySelector('.app__card-button--foco')
 const curtoBt = document.querySelector('.app__card-button--curto')
 const longoBt = document.querySelector('.app__card-button--longo')
@@ -86,9 +85,13 @@ function alterarContexto(nomeContexto) {
 const contagemRegressiva = () => {
     mostrarTempo()
     if(tempoDecorridoSegundos <= 0) {
-        //audioBeep.play()
-        zerar()
         alert('Tempo esgotado!')
+        const focoAtivo = html.getAttribute('data-contexto') == 'foco'
+        if (focoAtivo) {
+            const evento = new CustomEvent('FocoFinalizado')
+            document.dispatchEvent(evento)
+        }
+        zerar()
         return
     }
     tempoDecorridoSegundos -= 1
@@ -106,7 +109,7 @@ function iniciarPausar() {
         return
     }
     audioPlay.play()
-    intervaloId = setInterval(contagemRegressiva, 1000)  // Um segundo
+    intervaloId = setInterval(contagemRegressiva, 10)  // Um segundo
     startPauseIco.setAttribute('src', './imagens/pause.png')
     startPauseSpan.textContent = 'Pausar'
 }
@@ -121,7 +124,7 @@ function zerar() {
 /* Mostrar temporizados */
 
 function mostrarTempo() {
-    const tempo = new Date(tempoDecorridoSegundos * 1000)
+    const tempo = new Date(tempoDecorridoSegundos * 10)
     const tempoFormatado = tempo.toLocaleString("pt-BR", {
         minute: '2-digit',
         second: '2-digit',
