@@ -2,11 +2,15 @@ const btnAdicionaTarefa= document.querySelector('.app__button--add-task')       
 const formAdicionarTarefa = document.querySelector('.app__form-add-task')         // Botão de "Salvar tarefa" dentro do formulário
 const textarea = document.querySelector('.app__form-textarea')                    // Texto que o usuário escreve na tarefa.
 const ulTarefas = document.querySelector('.app__section-task-list')
+const btnCancelar = document.querySelector('.app__form-footer__button app__form-footer__button--cancel')
 
 const listaTarefas = JSON.parse(localStorage.getItem('tarefas')) || []
 
+function atualizarTarefas() {
+    localStorage.setItem('tarefas', JSON.stringify(listaTarefas))   // Usando o método stringify do JSON para converter o valor submetido pelo formulário em string legível pelo localStorage
+}
+
 function criarElementoTarefa(tarefa) {                               // Transforma um objeto tarefa em HTML com as informações da tarefa
-    console.log("criarelmeento")
     const li = document.createElement('li')                          // O createElement() vai "escrever" o código HTML
     li.classList.add('app__section-task-list-item')
 
@@ -24,6 +28,16 @@ function criarElementoTarefa(tarefa) {                               // Transfor
 
     const botao = document.createElement('button')
     botao.classList.add('app_button-edit')
+
+    botao.onclick = () => {
+        debugger
+        const novaDescricao = prompt('Nova descrição')
+        if (novaDescricao) {
+            paragrafo.textContent = novaDescricao
+            tarefa.descricao = novaDescricao
+            atualizarTarefas()
+        }
+    }
     
     const imgBotao = document.createElement('img')
     imgBotao.setAttribute('src', './imagens/edit.png')
@@ -33,7 +47,6 @@ function criarElementoTarefa(tarefa) {                               // Transfor
     li.append(paragrafo)
     li.append(botao)
 
-    console.log("feito")
     return li
 }
 
@@ -49,7 +62,7 @@ formAdicionarTarefa.addEventListener('submit', (evento) => {
     listaTarefas.push(tarefa)                                           // Adiciona o objeto tarefa à lista com todas as tarefas, que fica armazenada localmente
     const elementoTarefa = criarElementoTarefa(tarefa)
     ulTarefas.append(elementoTarefa)
-    localStorage.setItem('tarefas', JSON.stringify(listaTarefas))       // Usando o método stringify do JSON para converter o valor submetido pelo formulário em string legível pelo localStorage
+    atualizarTarefas()       
     textarea.value = ''
     formAdicionarTarefa.classList.add('hidden')
 })
