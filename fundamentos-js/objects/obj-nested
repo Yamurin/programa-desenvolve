@@ -1,0 +1,44 @@
+/* Podemos criar objeto dentro de objeto
+ ===================================================================*/
+
+const cliente = {
+    nome: "Joao",
+    idade: 24,
+    email: "joao@firma.com",
+    telefone: ["1155555550", "1144444440"],
+  };
+
+  cliente.endereco = {
+    rua: "Rua Padre Bernardes",
+    numero: 123,
+    apartamento: false,
+    complemento: "casa"
+  };
+
+  //console.log(cliente);
+  
+  
+ /* Lista de objetos: 
+ ====================================================================*/
+  cliente.compras = [           // Declarando um array de objetos
+    {
+        produtoId: "batedeira",
+        quantidade: 5,
+        valor: 70.50,
+    }
+];
+
+cliente.compras.push({
+    produtoId: "airfryer",
+    quantidade: 2,
+    valor: 250,
+});
+
+console.log(cliente.compras);
+
+// Aplicando filter na lista de objetos criada
+const produtoCaro = cliente.compras.filter(
+    compras => compras.valor > 100
+);
+
+console.log(produtoCaro);
