@@ -2,12 +2,27 @@ const btnAdicionaTarefa= document.querySelector('.app__button--add-task')       
 const formAdicionarTarefa = document.querySelector('.app__form-add-task')         // Botão de "Salvar tarefa" dentro do formulário
 const textarea = document.querySelector('.app__form-textarea')                    // Texto que o usuário escreve na tarefa.
 const ulTarefas = document.querySelector('.app__section-task-list')
-const btnCancelar = document.querySelector('.app__form-footer__button app__form-footer__button--cancel')
+const paragrafoDescricaoTarefa = document.querySelector('.app__section-active-task-description')
 
 const listaTarefas = JSON.parse(localStorage.getItem('tarefas')) || []
+let tarefaSelecionada = null
 
 function atualizarTarefas() {
     localStorage.setItem('tarefas', JSON.stringify(listaTarefas))   // Usando o método stringify do JSON para converter o valor submetido pelo formulário em string legível pelo localStorage
+}
+
+function limparFormulario() {
+    textarea.value = ''
+    mostrarFormulario()
+}
+
+function mostrarFormulario() {
+    formAdicionarTarefa.classList.toggle('hidden')
+
+    const btnCancelar = document.querySelector('.app__form-footer__button--cancel')
+    btnCancelar.addEventListener('click', () => {
+        limparFormulario()
+    })
 }
 
 function criarElementoTarefa(tarefa) {                               // Transforma um objeto tarefa em HTML com as informações da tarefa
@@ -30,7 +45,6 @@ function criarElementoTarefa(tarefa) {                               // Transfor
     botao.classList.add('app_button-edit')
 
     botao.onclick = () => {
-        debugger
         const novaDescricao = prompt('Nova descrição')
         if (novaDescricao) {
             paragrafo.textContent = novaDescricao
@@ -47,12 +61,30 @@ function criarElementoTarefa(tarefa) {                               // Transfor
     li.append(paragrafo)
     li.append(botao)
 
+    li.onclick = () => {
+        document.querySelectorAll('.app__section-task-list-item')
+                .forEach((tarefa) => {
+                    tarefa.classList.remove('app__section-task-list-item-active')
+                })
+
+        if (tarefa === tarefaSelecionada) {
+            paragrafoDescricaoTarefa.textContent = ''
+            tarefaSelecionada = null
+            return
+        }
+
+        tarefaSelecionada = tarefa
+        li.classList.add('app__section-task-list-item-active')
+        paragrafoDescricaoTarefa.textContent = tarefa.descricao
+    }
+
     return li
 }
 
 btnAdicionaTarefa.addEventListener('click', () => {
-    formAdicionarTarefa.classList.toggle('hidden')
+    mostrarFormulario()
 })
+
 
 formAdicionarTarefa.addEventListener('submit', (evento) => {        
     evento.preventDefault();                                            // O método previne o comportamento padrão do formulário, que é o de recarregar a página ao enviar.
@@ -61,6 +93,7 @@ formAdicionarTarefa.addEventListener('submit', (evento) => {
     }
     listaTarefas.push(tarefa)                                           // Adiciona o objeto tarefa à lista com todas as tarefas, que fica armazenada localmente
     const elementoTarefa = criarElementoTarefa(tarefa)
+
     ulTarefas.append(elementoTarefa)
     atualizarTarefas()       
     textarea.value = ''
