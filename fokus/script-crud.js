@@ -5,6 +5,7 @@ const ulTarefas = document.querySelector('.app__section-task-list')
 const paragrafoDescricaoTarefa = document.querySelector('.app__section-active-task-description')
 
 const btnRemoverConcluidas = document.querySelector('#btn-remover-concluidas')
+const btnRemoverTodas = document.querySelector('#btn-remover-todas')
 
 let listaTarefas = JSON.parse(localStorage.getItem('tarefas')) || []
 let tarefaSelecionada = null
@@ -120,21 +121,26 @@ listaTarefas.forEach((tarefa) => {
 
 /* Marca a tarefa como concluída */
 document.addEventListener('FocoFinalizado', () => {
-    if (tarefaSelecionada && liTarefaSelecionada) {
-        tarefaSelecionada.classList.remove('app__section-task-list-item-active')
-        tarefaSelecionada.classList.add('app__section-task-list-item-complete')
+    if (liTarefaSelecionada && liTarefaSelecionada) {
+        liTarefaSelecionada.classList.remove('app__section-task-list-item-active')
+        liTarefaSelecionada.classList.add('app__section-task-list-item-complete')
         document.querySelector('.app_button-edit').setAttribute('disabled', 'disabled')
         tarefaSelecionada.completa = true
         atualizarTarefas()
     }
 })
 
-/* Limpar todas as tarefas concluídas */
-btnRemoverConcluidas.onclick = () => {
-    const seletor = document.querySelectorAll('.app__section-task-list-item-complete')
-    seletor.forEach((tarefaConcluida) => {
+/* Limpar todas as tarefas ou apenas as tarefas concluidas */
+const removerTarefas = (somenteConcluidas) => {
+    let seletor = somenteConcluidas ? ".app__section-task-list-item-complete" : ".app__section-task-list-item"
+    
+    document.querySelectorAll(seletor).forEach((tarefaConcluida) => {
         tarefaConcluida.remove()
     })
-    listaTarefas = listaTarefas.filter((tarefa) => !tarefa.completa)      // Remove do array todas as tarefas com .completa == false
+
+    listaTarefas = somenteConcluidas ? listaTarefas.filter((tarefa) => !tarefa.completa) : []     // Remove do array todas as tarefas com .completa == false
     atualizarTarefas()
 }
+
+btnRemoverConcluidas.onclick = () => removerTarefas(true)
+btnRemoverTodas.onclick = () => removerTarefas(false)
