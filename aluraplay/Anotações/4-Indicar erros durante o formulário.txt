@@ -1,0 +1,20 @@
+Sempre que eu preciso me conectar com uma APPI, vou armazená-la em uma varia´vel:
+const response = await fetch('https/api');
+
+A response é um objeto com várias chaves, dentre elas 'ok' que identifica se a conexão deu certo ou não.
+Para identificar erro noa conexão, vou usar uma condicoinal:
+
+if(!response.ok) {
+	throw new Errow("Erro na conexão com o servidor.").
+}
+
+Esse throw new error vai de fato 'lançar' um novo erro no sistema, se a condição ok for falsa.
+Feito isso, eu posso agora 'capturar' esse erro em outra parte do código, usando try catch;
+
+try { 
+  [ estabelecer conexão com a função que tem minha response ]
+} catch (error) {
+	alert (error)
+}
+
+O error é uma variável que guarda qualquer que seja o erro captuado durante a execução daquele try;

@@ -1,0 +1,29 @@
+1)
+export listarVideosAPI
+
+Vou exportar a função responsável por chamar a API e ler os dados do json, para que possa ser utilizada em outro script.
+
+
+2)
+function construirCard(video)
+
+Vou criar uma função específica para criar o elemento visual de cada vídeo (o card) dentro do site. Essa função é responsável somente por inserir no DOM todo o HTML de cada card.
+
+
+3) 
+function listarVideosNoDOM
+
+Essa função vai receber os dados coletados pela ListarVideosAPI lá do outro script, e vai guardar todos aqueles vídeos, um por um, retirados do json.
+Vou ler essa lista de vídeos (um array) e, para cada vídeo individual, vou chamar a função que cria um card. 
+
+
+
+OBSERVAÇÃO
+Utilizou-se data-attribute para identificar o container de exibição da grade de vídeos.
+Data-attribute é uma classificação personalizável para um elemento qualquer que não precisa necessariamente aparaer na tela ou ser estilizado. É um jeito de criar um seletor.
+
+Para adicionar no HTML: Escrever normalmente, com prefixo 'data-'
+Ex.: <div class="header__frase" data-frase>Meu nome é Rayane.</div>
+
+Para manipular no JS: Usar querySelector, o nome entre colchetes.
+Ex.: const headerFrase = document.querySelector("[data-frase]")

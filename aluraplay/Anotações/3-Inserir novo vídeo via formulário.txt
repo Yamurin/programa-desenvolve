@@ -1,0 +1,23 @@
+1) 
+async function adicionarNovoVideoNaApi()
+
+A função vai novamente entrar em contato com o endereço do json onde estamos armazenando todos os vídeos e suas informações, por meio do fetch.
+No fetch, usa-se o método POST para indicar ao servidor web que eu (cliente) quero adicionar conteúdo ao corpo dos dados armazenados (o json com lista de vídeos).
+No body, vou passar, como string, as variáveis de cada vídeo.
+
+Todo esse processo é equivalente à abrir o arquivo .json e manualmente digitar um novo vídeo, e seu título, link, etc, um por um.
+
+2)
+return data
+
+Depois de solicitar a adição de mais linhas de código no arquivo endereço do json, vou converter aquela resposta e armazenar na variável data.
+Agora, data vai conter toda a lista de vídeos que já existia antes, adicionado ao novo vídeo. Vou retornar esas variável.
+
+3)
+Criar um outro script para receber as respostas do formulário
+
+Nesse script, importar a função conectarAPI que vai conter nosso módulo adicionarNovoVideoNaApi.
+Lembrando que, como adicionarNovoVideoNaApi é um dos modulos presentes na função conectarApi.js, é preciso colocar especificá-lo como objeto para poder utilizar:
+conectarAPI.enviarNovoVideo
+
+Utilizando ( [campoDoFomulario] ).value, vou pegar o valor de string das respostas submetidas pelo formulário e, então, enviar cada uma como parâmetro da adicionarNovoVideoNaApi().

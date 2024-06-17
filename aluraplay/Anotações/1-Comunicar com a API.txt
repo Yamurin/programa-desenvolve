@@ -1,0 +1,29 @@
+1) 
+npm start
+
+Iniciar o Node Package Manager, assim, será possível instalar bibliotecas do NPM.
+
+
+2) 
+json-server --watch db.json
+
+Iniciar um servidor local onde iremos simular uma API falsa, a ser usada em testes ao longo do desenvolvimento.
+
+
+3) 
+const response = await fetch("adress");
+
+O fetch vai se dirigir ao endereço indicado entre parênteses e 'pegar' o arquivo json que está nele.
+Isso é uma promessa, ou seja, o fetch pode ter sucesso (alcançar o arquivo no endereço), ou falhar.
+Se tudo der certo, ele vai retornar uma response, que é tipo o status da promessa (como deu certo, vão ser informações sobre essa resposta que acabou de ser recebida).
+Uma vez tendo uma resposta, vou armazenar isso na variável response.
+Então a response vai tipo guardar o endereço do meu json, pronto para usar.
+
+ATENÇÃO: A response não guarda nenhum dos dados do json, guarda apenas a RESPOSTA recebida.
+
+4)
+const dados = await response.json();
+
+Vou chamar a resposta recebida, ir até ela e pegar os dados json para os quais ela aponta. 
+O json() transforma esses dados me um objeto com informações em texto.
+
